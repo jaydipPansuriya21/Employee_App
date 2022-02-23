@@ -4,14 +4,15 @@ class EmployeeController < ApplicationController
   end
 
   def edit_department
-    employee_id = params[:employee_id]
+    employee_id = params[:id]
     if employee_id.present?
       begin
         @employee = get_employee_with_give_id(employee_id)
-        @departments = get_all_departments
-      rescue Exception::EmployeeNotFound => e
-        e.message
-        # redirect back to original page and give notice that employee is not found.
+        @departments_name= get_all_departments_name
+      rescue Exceptions::EmployeeNotFound => e
+        # showing error with message
+        @error_message = e.message
+        render 'layouts/_errors'
       end 
       
     end  
@@ -22,14 +23,15 @@ class EmployeeController < ApplicationController
     if employee_id.present?
       begin
         @employee = get_employee_with_give_id(employee_id)
-        @employee.update_department(params[:department_id])
+        @employee.update_department(params[:department_name])
         @employee.save
+        redirect_to root_path, flash: { message: "Department Updated sucessfully !"} 
         # return success notice    
-      rescue Exception::DepartmentNotFound, Exception::EmployeeNotFound => e
-        e.message
-        # return Error notice that department is not found        
+      rescue Exceptions::DepartmentNotFound, Exceptions::EmployeeNotFound => e
+        # showing error with message
+        @error_message = e.message
+        render 'layouts/_errors'
       end
-
     end  
   end
 
@@ -51,8 +53,8 @@ class EmployeeController < ApplicationController
     employee
   end
 
-  def get_all_departments
+  def get_all_departments_name
     # Return all departments information
-    Department.all
+    Department.all.map { |department| department.name }
   end
 end
