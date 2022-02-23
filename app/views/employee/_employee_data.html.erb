@@ -1,9 +1,10 @@
 <tr>
+    <th scope="row"><%= employee.id %></th>
     <td><%= employee.first_name %></td>
     <td><%= employee.last_name %></td>
     <td><%= employee.email_address %></td>
     <td><%= employee.phone %></td>
     <td><%= employee.salary %></td>
     <td><%= employee.department.name %></td>
-    <td><%= link_to 'Edit_Department', edit_department_path(employee) %></td>
+    <td><%= link_to 'Edit_Department', edit_department_path(employee), class: 'remove_underline' %></td>
 </tr>

@@ -1,25 +1,33 @@
-<% flash.each do |key, value|%>
-   <%= value %>
-<% end %>
-<table>
+<div class="alert alert-success" role="alert">
+  <p class="align-middle" >
+    <% flash.each do |key, value|%>
+        <%= value %>
+    <% end %>
+  </p>  
+</div>
 
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>First Name</th>
-      <th>Email Address</th>
-      <th>Phone No</th>
-      <th>Salary</th>
-      <th>Department</th>
-      <th>Edit Department</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @employees.each do |emp| %>
-       <%= render 'employee_data', employee: emp %>
-   <% end %>
-  </tbody>
+<div class="container">
 
-</table>
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col">Phone No</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Department</th>
+            <th scope="col">Edit Department</th>
+        </tr>
+    </thead>
 
+    <tbody>
+        <% @employees.each do |emp| %>
+        <%= render 'employee_data', employee: emp %>
+    <% end %>
+    </tbody>
+
+    </table>
+</div>

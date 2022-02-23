@@ -8,8 +8,15 @@ class Employee < ApplicationRecord
     validates :phone, uniqueness: true, length: { is: 10 }
     validates :salary, numericality: { only_integer: true} 
     
+    before_create :assign_department
         
-    
+    def assign_department
+        byebug
+        puts "Hello"
+        return if self.department.present?
+        puts "Hello"
+        self.department = Department.find_by(name: 'Other')
+    end
     
     def update_department(department_name)
         # update department

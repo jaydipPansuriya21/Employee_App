@@ -1,9 +1,10 @@
- <h1> <%= @employee.first_name + " " + @employee.last_name %></h1>
-<br>
-<%= form_with url: "/employee/update_department" do |form| %>
-    <%= form.hidden_field :employee_id, value: @employee.id %>
-    <%= form.label "Department"%>
-    <%= form.select :department_name, options_for_select(@departments_name, @employee.department.name) %>
-    <br>
-    <%= form.submit "Update"%>
-<% end %>
+<div class="p-5 m-5 container-sm border">
+    <h3> <%= @employee.first_name + " " + @employee.last_name %></h3>
+    <%= form_with url: "/employee/update_department" do |form| %>
+        <%= form.hidden_field :employee_id, value: @employee.id %>
+        <%= form.label "Department :", class: "p-5" %>
+        <%= form.select :department_name, options_for_select(@departments_name, @employee.department.name) %>
+        <br>
+        <%= form.submit "Update", class: "mt-4" %>
+    <% end %>
+</div>
