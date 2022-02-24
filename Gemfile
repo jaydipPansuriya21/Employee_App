@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 gem 'mysql2', '~> 0.5.2'
 gem 'byebug'
 gem 'rails-controller-testing'
+gem 'simplecov', require: false, group: :test
 # Use Sass to process CSS
 # gem "sassc-rails"
 
