@@ -1,0 +1,35 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services: 
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: 121212
+        ports:
+          - 3306
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0 
+      - name: Install required apt packages
+        run: |
+          sudo apt-get -y install libmysql-dev  
+      - name: start mysql client  
+        run: sudo service mysql start 
+      - name: Run bundle install
+        run: |
+            gem install bundler
+            bundle install
+      - name: Start mysql
+        run: |
+            sudo service mysql start
+      - name: create database    
+        run: |
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
+      - name: Run rspec
+        run: rspec .     
