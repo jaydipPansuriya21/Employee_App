@@ -25,8 +25,8 @@ class EmployeeController < ApplicationController
         @employee = get_employee_with_give_id(employee_id)
         @employee.update_department(params[:department_name])
         @employee.save
-        redirect_to root_path, flash: { message: "Department Updated sucessfully for Employee with ID #{ @employee.id } !"} 
         # return success notice    
+        redirect_to root_path, flash: { message: "Department Updated sucessfully for Employee with ID #{ @employee.id } !"} 
       rescue Exceptions::DepartmentNotFound, Exceptions::EmployeeNotFound => e
         # showing error with message
         @error_message = e.message

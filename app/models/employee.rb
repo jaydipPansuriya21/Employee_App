@@ -11,10 +11,8 @@ class Employee < ApplicationRecord
     before_create :assign_department
         
     def assign_department
-        byebug
-        puts "Hello"
+        # byebug
         return if self.department.present?
-        puts "Hello"
         self.department = Department.find_by(name: 'Other')
     end
     
