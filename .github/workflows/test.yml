@@ -15,9 +15,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.0 
-      - name: Install required apt packages
-        run: |
-          sudo apt-get -y install libmysql-dev  
+
       - name: start mysql client  
         run: sudo service mysql start 
       - name: Run bundle install
