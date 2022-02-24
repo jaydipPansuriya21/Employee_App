@@ -22,9 +22,6 @@ jobs:
         run: |
             gem install bundler
             bundle install
-      - name: Start mysql
-        run: |
-            sudo service mysql start
       - name: create database    
         run: |
           bundle exec rails db:create RAILS_ENV=test
